@@ -17,73 +17,52 @@ font-family:Arial, sans-serif;
 body{
 height:100vh;
 background:linear-gradient(180deg,#ff758f,#ff4d6d);
-display:flex;
-justify-content:center;
-align-items:center;
 overflow:hidden;
 color:white;
 text-align:center;
 }
 
-/* CORAZONES FONDO */
-
-.corazon{
-position:absolute;
-font-size:22px;
-opacity:0.6;
-animation:flotar linear infinite;
-pointer-events:none;
-}
-
-@keyframes flotar{
-0%{transform:translateY(100vh)}
-100%{transform:translateY(-10vh)}
-}
-
 /* CONTENEDOR */
 
 .container{
-width:95%;
-max-width:420px;
-padding:10px;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:92%;
+max-width:500px;
 z-index:10;
 }
 
-/* SOBRE */
+/* CARTA */
 
 .sobre{
 background:white;
 color:#ff4d6d;
-padding:25px;
+padding:30px;
 border-radius:20px;
 box-shadow:0 10px 30px rgba(0,0,0,0.2);
-animation:aparecer 1s ease;
 }
 
 h1{
-font-size:26px;
-margin-bottom:10px;
+font-size:32px;
+margin-bottom:15px;
 }
 
 p{
-font-size:17px;
+font-size:20px;
 line-height:1.5;
 }
 
 button{
-margin-top:20px;
-padding:14px 22px;
+margin-top:25px;
+padding:18px 28px;
 border:none;
-border-radius:20px;
+border-radius:25px;
 background:#ff4d6d;
 color:white;
 font-weight:bold;
-font-size:17px;
-touch-action:manipulation;
-}
-
-button:active{
-transform:scale(0.9);
+font-size:20px;
 }
 
 /* JUEGO */
@@ -95,7 +74,7 @@ margin-top:20px;
 
 #contador{
 margin-top:10px;
-font-size:24px;
+font-size:28px;
 }
 
 /* CUPON */
@@ -107,41 +86,45 @@ background:white;
 color:#ff4d6d;
 padding:20px;
 border-radius:20px;
+font-size:22px;
 font-weight:bold;
-font-size:18px;
-animation:pop 0.5s;
 }
 
 .ticket{
 margin-top:10px;
-border:2px dashed #ff4d6d;
-padding:15px;
+border:3px dashed #ff4d6d;
+padding:20px;
 border-radius:15px;
-}
-
-@keyframes aparecer{
-from{transform:scale(0.7);opacity:0}
-to{transform:scale(1);opacity:1}
-}
-
-@keyframes pop{
-0%{transform:scale(0)}
-100%{transform:scale(1)}
 }
 
 /* CORAZONES JUEGO */
 
 .corazonJuego{
 position:absolute;
-font-size:55px;
-animation:caer 7s linear;
+font-size:70px;
 cursor:pointer;
+animation:caer 7s linear;
 z-index:5;
 }
 
 @keyframes caer{
 0%{transform:translateY(-10vh)}
-100%{transform:translateY(100vh)}
+100%{transform:translateY(110vh)}
+}
+
+/* CORAZONES FONDO */
+
+.corazon{
+position:absolute;
+font-size:28px;
+opacity:0.6;
+animation:flotar linear infinite;
+pointer-events:none;
+}
+
+@keyframes flotar{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
 }
 
 </style>
@@ -215,15 +198,15 @@ c.className="corazon"
 c.innerHTML="❤️"
 
 c.style.left=Math.random()*100+"vw"
-c.style.animationDuration=(5+Math.random()*4)+"s"
+c.style.animationDuration=(5+Math.random()*5)+"s"
 
 document.body.appendChild(c)
 
-setTimeout(()=>{c.remove()},9000)
+setTimeout(()=>{c.remove()},10000)
 
 }
 
-setInterval(corazonFondo,500)
+setInterval(corazonFondo,600)
 
 /* JUEGO */
 
@@ -234,7 +217,7 @@ function iniciar(){
 document.querySelector("button").style.display="none"
 document.getElementById("juego").style.display="block"
 
-setInterval(crearCorazon,1400)
+setInterval(crearCorazon,1500)
 
 }
 
@@ -250,9 +233,10 @@ c.style.left=Math.random()*90+"vw"
 function tocar(){
 
 puntos++
-c.remove()
 
 document.getElementById("contador").innerText=puntos+" / 7"
+
+c.remove()
 
 if(puntos>=7){
 
@@ -262,8 +246,7 @@ document.getElementById("cupon").style.display="block"
 
 }
 
-c.addEventListener("click",tocar)
-c.addEventListener("touchstart",tocar)
+c.addEventListener("pointerdown",tocar)
 
 document.body.appendChild(c)
 
