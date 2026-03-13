@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi amor ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+height:100vh;
+background:linear-gradient(180deg,#ff758f,#ff4d6d);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+color:white;
+text-align:center;
+}
+
+/* CORAZONES FONDO */
+
+.corazon{
+position:absolute;
+font-size:22px;
+opacity:0.6;
+animation:flotar linear infinite;
+}
+
+@keyframes flotar{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+/* CONTENEDOR */
+
+.container{
+width:90%;
+max-width:350px;
+z-index:2;
+}
+
+/* SOBRE */
+
+.sobre{
+background:white;
+color:#ff4d6d;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+animation:aparecer 1s ease;
+}
+
+h1{
+font-size:24px;
+margin-bottom:10px;
+}
+
+p{
+font-size:16px;
+line-height:1.5;
+}
+
+button{
+margin-top:20px;
+padding:12px 20px;
+border:none;
+border-radius:20px;
+background:#ff4d6d;
+color:white;
+font-weight:bold;
+font-size:16px;
+}
+
+button:active{
+transform:scale(0.9);
+}
+
+/* JUEGO */
+
+.juego{
+display:none;
+margin-top:20px;
+}
+
+#contador{
+margin-top:10px;
+font-size:22px;
+}
+
+/* CUPON */
+
+.cupon{
+display:none;
+margin-top:20px;
+background:white;
+color:#ff4d6d;
+padding:20px;
+border-radius:20px;
+font-weight:bold;
+font-size:18px;
+animation:pop 0.5s;
+}
+
+.ticket{
+margin-top:10px;
+border:2px dashed #ff4d6d;
+padding:15px;
+border-radius:15px;
+}
+
+@keyframes aparecer{
+from{transform:scale(0.7);opacity:0}
+to{transform:scale(1);opacity:1}
+}
+
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+
+/* CORAZONES JUEGO */
+
+.corazonJuego{
+position:absolute;
+font-size:36px;
+animation:caer 4s linear;
+cursor:pointer;
+}
+
+@keyframes caer{
+0%{transform:translateY(-10vh)}
+100%{transform:translateY(100vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="sobre">
+
+<h1>💌 Para mi amor</h1>
+
+<p>
+Mi amor, sé que estás cansada y quisieras venirte ya.
+
+<br><br>
+
+Sé que hoy será un día un poco largo,  
+pero quería hacer algo pequeño para alegrarte un poquito.
+
+<br><br>
+
+No me gusta cuando estás mal…  
+así que hice esto para ti ❤️
+</p>
+
+<button onclick="iniciar()">Abrir sorpresa 💖</button>
+
+<div class="juego" id="juego">
+
+<p>Atrapa 7 corazones para desbloquear algo</p>
+
+<div id="contador">0 / 7</div>
+
+</div>
+
+<div class="cupon" id="cupon">
+
+🎉 Sorpresa desbloqueada 🎉
+
+<div class="ticket">
+
+💰 BONO: $10.000
+
+<br><br>
+
+Para un helado de Creeps 🍦  
+y unas papitas o chocoatina 🍫
+
+<br><br>
+
+Te amo muchísimo ❤️
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+/* CORAZONES FONDO */
+
+function corazonFondo(){
+
+const c=document.createElement("div")
+c.className="corazon"
+c.innerHTML="❤️"
+
+c.style.left=Math.random()*100+"vw"
+c.style.animationDuration=(4+Math.random()*4)+"s"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{c.remove()},8000)
+
+}
+
+setInterval(corazonFondo,400)
+
+/* JUEGO */
+
+let puntos=0
+
+function iniciar(){
+
+document.querySelector("button").style.display="none"
+document.getElementById("juego").style.display="block"
+
+setInterval(crearCorazon,900)
+
+}
+
+function crearCorazon(){
+
+const c=document.createElement("div")
+
+c.className="corazonJuego"
+c.innerHTML="💖"
+
+c.style.left=Math.random()*90+"vw"
+
+c.onclick=()=>{
+
+puntos++
+c.remove()
+
+document.getElementById("contador").innerText=puntos+" / 7"
+
+if(puntos>=7){
+
+document.getElementById("cupon").style.display="block"
+
+}
+
+}
+
+document.body.appendChild(c)
+
+setTimeout(()=>{c.remove()},4000)
+
+}
+
+</script>
+
+</body>
+</html>
