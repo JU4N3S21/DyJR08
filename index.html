@@ -32,6 +32,7 @@ position:absolute;
 font-size:22px;
 opacity:0.6;
 animation:flotar linear infinite;
+pointer-events:none;
 }
 
 @keyframes flotar{
@@ -45,7 +46,7 @@ animation:flotar linear infinite;
 width:95%;
 max-width:420px;
 padding:10px;
-z-index:2;
+z-index:10;
 }
 
 /* SOBRE */
@@ -60,24 +61,25 @@ animation:aparecer 1s ease;
 }
 
 h1{
-font-size:24px;
+font-size:26px;
 margin-bottom:10px;
 }
 
 p{
-font-size:16px;
+font-size:17px;
 line-height:1.5;
 }
 
 button{
 margin-top:20px;
-padding:12px 20px;
+padding:14px 22px;
 border:none;
 border-radius:20px;
 background:#ff4d6d;
 color:white;
 font-weight:bold;
-font-size:16px;
+font-size:17px;
+touch-action:manipulation;
 }
 
 button:active{
@@ -93,7 +95,7 @@ margin-top:20px;
 
 #contador{
 margin-top:10px;
-font-size:22px;
+font-size:24px;
 }
 
 /* CUPON */
@@ -131,9 +133,10 @@ to{transform:scale(1);opacity:1}
 
 .corazonJuego{
 position:absolute;
-font-size:50px;
-animation:caer 6s linear;
+font-size:55px;
+animation:caer 7s linear;
 cursor:pointer;
+z-index:5;
 }
 
 @keyframes caer{
@@ -170,7 +173,7 @@ así que hice esto para ti ❤️
 
 <div class="juego" id="juego">
 
-<p>Atrapa 7 corazones para desbloquear algo</p>
+<p>Atrapa 7 corazones para desbloquear algo 💖</p>
 
 <div id="contador">0 / 7</div>
 
@@ -212,15 +215,15 @@ c.className="corazon"
 c.innerHTML="❤️"
 
 c.style.left=Math.random()*100+"vw"
-c.style.animationDuration=(4+Math.random()*4)+"s"
+c.style.animationDuration=(5+Math.random()*4)+"s"
 
 document.body.appendChild(c)
 
-setTimeout(()=>{c.remove()},8000)
+setTimeout(()=>{c.remove()},9000)
 
 }
 
-setInterval(corazonFondo,400)
+setInterval(corazonFondo,500)
 
 /* JUEGO */
 
@@ -231,7 +234,7 @@ function iniciar(){
 document.querySelector("button").style.display="none"
 document.getElementById("juego").style.display="block"
 
-setInterval(crearCorazon,900)
+setInterval(crearCorazon,1400)
 
 }
 
@@ -244,7 +247,7 @@ c.innerHTML="💖"
 
 c.style.left=Math.random()*90+"vw"
 
-c.addEventListener("click",()=>{
+function tocar(){
 
 puntos++
 c.remove()
@@ -259,14 +262,16 @@ document.getElementById("cupon").style.display="block"
 
 }
 
+c.addEventListener("click",tocar)
+c.addEventListener("touchstart",tocar)
+
 document.body.appendChild(c)
 
-setTimeout(()=>{c.remove()},4000)
+setTimeout(()=>{c.remove()},7000)
 
 }
 
 </script>
 
 </body>
-
 </html>
