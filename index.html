@@ -42,8 +42,9 @@ animation:flotar linear infinite;
 /* CONTENEDOR */
 
 .container{
-width:90%;
-max-width:350px;
+width:95%;
+max-width:420px;
+padding:10px;
 z-index:2;
 }
 
@@ -130,8 +131,8 @@ to{transform:scale(1);opacity:1}
 
 .corazonJuego{
 position:absolute;
-font-size:36px;
-animation:caer 4s linear;
+font-size:50px;
+animation:caer 6s linear;
 cursor:pointer;
 }
 
@@ -243,7 +244,7 @@ c.innerHTML="💖"
 
 c.style.left=Math.random()*90+"vw"
 
-c.onclick=()=>{
+c.addEventListener("click",()=>{
 
 puntos++
 c.remove()
@@ -267,4 +268,5 @@ setTimeout(()=>{c.remove()},4000)
 </script>
 
 </body>
+
 </html>
